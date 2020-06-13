@@ -23,7 +23,7 @@ partialSum xs = map f $ zip [1..] xs
 main :: IO ()
 main = do 
   putStrLn "Exam"
-  print $ partialSum [1 .. 10]
+  print $ take 5 $ partialSum [1 ..]
 
-  let tree = Branch 10 (Leaf 5) (Leaf 12)
+  let tree = Branch 10 (Branch 4 (Leaf 3) (Leaf 5)) (Leaf 12)
   print $ evenList tree
