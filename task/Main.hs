@@ -17,13 +17,16 @@ evenList tree = filter even $ inorder tree
 -- повертає нескінченний список з часткових сум : [ x1 , x1 + x2 , x1 + x2 + x3 , x1 + x2 + x3 + x4 , . .. ]
 
 partialSum :: Num a => [a] -> [a]
-partialSum xs = map f $ zip [1..] xs
-  where f (n, x) = sum $ take n xs
+partialSum xs = map f [1..]
+  where f n = sum $ take n xs
+
+partialSum' :: Num a => [a] -> [a]
+partialSum' xs = scanl1 (+) xs
 
 main :: IO ()
-main = do 
+main = do
   putStrLn "Exam"
-  print $ take 5 $ partialSum [1 ..]
+  print $ take 5 $ partialSum' [1 ..]
 
   let tree = Branch 10 (Branch 4 (Leaf 3) (Leaf 5)) (Leaf 12)
   print $ evenList tree
